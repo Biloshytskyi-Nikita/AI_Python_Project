@@ -1,0 +1,86 @@
+№1:
+mother('Віталія' , 'Семен').
+mother('Віталія' , 'Сніжана').
+mother('Іванко' , 'Устим').
+mother('Іванко' , 'Сергій').
+mother('Віта' , 'Влад').
+mother('Софія' , 'Тереза').
+mother('Софія' , 'Тарас').
+father('Панас' , 'Семен').
+father('Панас' , 'Сніжана').
+father('Семен' , 'Софія').
+father('Семен' , 'Вадим').
+father('Устим' , 'Софія').
+father('Устим' , 'Вадим').
+father('Отто' , 'Устим').
+father('Отто' , 'Сергій').
+father('Максим' , 'Влад').
+father('Влад' , 'Тереза').
+father('Влад' , 'Тарас').
+
+grandmother(X, Y):-
+    mother(X, Z), (mother(Z, Y); father(Z, Y)).
+
+grandfather(X, Y):-
+    father(X, Z), (mother(Z, Y); father(Z, Y)).
+
+main:-
+    write('Віталія бабуся Софії?'), nl,
+    grandmother('Віталія', 'Софія'),
+    write('Віталія бабуся Вадима?'), nl,
+    grandmother('Віталія', 'Вадим'),
+    write('Іванко бабуся Вадима?'), nl,
+    grandmother('Іванко', 'Вадим'),
+    write('Панас дід Софії?'), nl,
+    grandfather('Панас', 'Софія'),
+    write('Панас дід Вадима?'), nl,
+    grandfather('Панас', 'Вадим'),
+    write('Отто дід Софії?'), nl,
+    grandfather('Отто', 'Софія').
+
+№2:
+main :-
+    query_1,
+    query_2,
+    query_3,
+    query_4.
+
+query_1 :-
+    write('Смартфони з Android є у продажу'), nl,
+    available('Смартфон', 'Android') ->
+    write('Yes'), nl; 
+    write('No'),
+    nl.
+
+query_2 :-
+    write('Магазин продає планшети'), nl,
+    available('Планшет', _) ->
+    write('Yes'), nl; 
+    write('No'),
+    nl.
+
+query_3 :-
+    write('Існують телефони з підтримкою 5G'), nl,
+    available(_, '5G') ->
+    write('Yes'), nl; 
+    write('No'),
+    nl.
+
+query_4 :-
+    write('Є в наявності аксесуари для iPhone'), nl,
+    available('Аксесуар', 'iPhone') ->
+    write('Yes'), nl; 
+    write('No'),
+    nl.
+
+% Факти про доступні товари
+available('Смартфон', 'Android').
+available('Смартфон', 'iOS').
+available('Планшет', 'Android').
+available('Планшет', 'iOS').
+available('Аксесуар', 'iPhone').
+available('Аксесуар', 'Android').
+available('Аксесуар', 'iOS').
+available('Смартфон', '5G').
+available('Планшет', '5G').
+available('Аксесуар', '5G').
